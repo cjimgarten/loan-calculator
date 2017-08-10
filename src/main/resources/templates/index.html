@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+
+    <div th:replace="fragments :: h1"></div>
+
+    <form method="post">
+        <label>Amount</label>
+        <input type="text" name="amount"/>
+        <label>Term</label>
+        <input type="text" name="term"/>
+        <label>Interest Rate</label>
+        <input type="text" name="interestRate"/>
+        <input type="submit" value="Submit"/>
+    </form>
+
+</body>
+</html>
