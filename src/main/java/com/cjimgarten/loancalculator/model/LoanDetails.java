@@ -6,17 +6,17 @@ package com.cjimgarten.loancalculator.model;
 public class LoanDetails {
 
     private double amount;
-    private double term;
     private double interestRate;
+    private double term;
 
     public LoanDetails() {
 
     }
 
-    public LoanDetails(double amount, double term, double interestRate) {
+    public LoanDetails(double amount, double interestRate, double term) {
         this.amount = amount;
-        this.term = term;
         this.interestRate = interestRate;
+        this.term = term;
     }
 
     public double getAmount() {
@@ -25,14 +25,7 @@ public class LoanDetails {
 
     public void setAmount(double amount) {
         this.amount = amount;
-    }
-
-    public double getTerm() {
-        return this.term;
-    }
-
-    public void setTerm(double term) {
-        this.term = term;
+        calculatePayment();
     }
 
     public double getInterestRate() {
@@ -41,5 +34,22 @@ public class LoanDetails {
 
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
+        calculatePayment();
+    }
+
+    public double getTerm() {
+        return this.term;
+    }
+
+    public void setTerm(double term) {
+        this.term = term;
+        calculatePayment();
+    }
+
+    public void calculatePayment() {
+        // TODO calculate loan payment
+        System.out.println(amount);
+        System.out.println(interestRate);
+        System.out.println(term);
     }
 }
