@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+    <div th:replace="fragments :: h1"></div>
+
+    <form method="post">
+        <div class="form-group">
+            <label>Amount</label>
+            <input class="form-control" type="text" placeholder="Enter loan amount" name="amount"/>
+        </div>
+        <div class="form-group">
+            <label>Interest Rate</label>
+            <input class="form-control" type="text" placeholder="Enter interest rate"
+                   name="interestRate"/>
+        </div>
+        <div class="form-group">
+            <label>Term</label>
+            <input class="form-control" type="text" placeholder="Enter loan term" name="term"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-default-outline" type="submit">Calculate</button>
+        </div>
+    </form>
+
+    <table class="table">
+        <tr>
+            <td>Loan Amount</td>
+            <td>Monthly Payment</td>
+            <td>Total Payment</td>
+            <td>Total Interest</td>
+            <td>Annual Payment</td>
+        </tr>
+        <tr>
+            <td th:text="${amount}"></td>
+            <td th:text="${monthlyPayment}"></td>
+            <td th:text="${totalPayment}"></td>
+            <td th:text="${totalInterest}"></td>
+            <td th:text="${annualPayment}"></td>
+        </tr>
+    </table>
+
+</body>
+</html>

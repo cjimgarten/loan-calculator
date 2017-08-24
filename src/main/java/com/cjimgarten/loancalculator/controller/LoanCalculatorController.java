@@ -40,7 +40,7 @@ public class LoanCalculatorController {
             model.addAttribute("annualPayment",
                     "$" + df.format(loanDetails.getAnnualPayment()));
         }
-        return "index";
+        return "calc/index";
     }
 
     @RequestMapping(value = "index", method = RequestMethod.POST)
