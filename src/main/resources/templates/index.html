@@ -8,12 +8,30 @@
     <form method="post">
         <label>Amount</label>
         <input type="text" name="amount"/>
+
         <label>Interest Rate</label>
         <input type="text" name="interestRate"/>
+
         <label>Term</label>
         <input type="text" name="term"/>
+
         <input type="submit" value="Calculate"/>
     </form>
+
+    <label>Loan Amount:</label>
+    <p th:text="${amount}"></p>
+
+    <label>Monthly Payment:</label>
+    <p th:text="${monthlyPayment}"></p>
+
+    <label>Total Payment:</label>
+    <p th:text="${totalPayment}"></p>
+
+    <label>Total Interest:</label>
+    <p th:text="${totalInterest}"></p>
+
+    <label>Annual Payment:</label>
+    <p th:text="${annualPayment}"></p>
 
 </body>
 </html>
