@@ -31,6 +31,10 @@ public class LoanCalculatorController {
         if (loanDetails != null) {
             model.addAttribute("amount",
                     "$" + df.format(loanDetails.getAmount()));
+            model.addAttribute("interestRate",
+                    loanDetails.getInterestRate() + "%");
+            model.addAttribute("term",
+                    loanDetails.getTerm() + " years");
             model.addAttribute("monthlyPayment",
                     "$" + df.format(loanDetails.getMonthlyPayment()));
             model.addAttribute("totalPayment",

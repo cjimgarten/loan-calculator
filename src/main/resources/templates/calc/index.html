@@ -27,6 +27,8 @@
     <table class="table">
         <tr>
             <td>Loan Amount</td>
+            <td>Interest Rate</td>
+            <td>Loan Term</td>
             <td>Monthly Payment</td>
             <td>Total Payment</td>
             <td>Total Interest</td>
@@ -34,6 +36,8 @@
         </tr>
         <tr>
             <td th:text="${amount}"></td>
+            <td th:text="${interestRate}"></td>
+            <td th:text="${term}"></td>
             <td th:text="${monthlyPayment}"></td>
             <td th:text="${totalPayment}"></td>
             <td th:text="${totalInterest}"></td>
