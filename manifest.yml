@@ -1,0 +1,14 @@
+---
+applications:
+
+# DEV
+- name: loan-calc
+  path: ./target/loan-calculator-1.0-SNAPSHOT.jar
+  buildpack: java_buildpack
+  memory: 768MB
+  instances: 1
+  host: loan-calc
+  random-route: true
+  env:
+    spring.config.location: classpath:dev/application.properties
+    logging.config: classpath:dev/log4j2.xml

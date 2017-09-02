@@ -13,17 +13,12 @@ import java.text.DecimalFormat;
  * Created by chris on 7/30/17.
  */
 @Controller
-@RequestMapping(value = "calc")
+@RequestMapping(value = "")
 public class LoanCalculatorController {
 
     private static LoanDetails loanDetails;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String redirect() {
-        return "redirect:/calc/index";
-    }
-
-    @RequestMapping(value = "index", method = RequestMethod.GET)
     public String indexGET(Model model) {
         model.addAttribute("title", "Loan Calculator");
 
@@ -31,6 +26,10 @@ public class LoanCalculatorController {
         if (loanDetails != null) {
             model.addAttribute("amount",
                     "$" + df.format(loanDetails.getAmount()));
+            model.addAttribute("interestRate",
+                    loanDetails.getInterestRate() + "%");
+            model.addAttribute("term",
+                    loanDetails.getTerm() + " years");
             model.addAttribute("monthlyPayment",
                     "$" + df.format(loanDetails.getMonthlyPayment()));
             model.addAttribute("totalPayment",
@@ -43,11 +42,18 @@ public class LoanCalculatorController {
         return "index";
     }
 
-    @RequestMapping(value = "index", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String indexPOST(@RequestParam double amount,
                             @RequestParam double interestRate,
-                            @RequestParam double term) {
-        loanDetails = new LoanDetails(amount, interestRate, term);
-        return "redirect:/calc/index";
+                            @RequestParam double term,
+                            @RequestParam String button) {
+        if (button.equals("calculate")) {
+            loanDetails = new LoanDetails(amount, interestRate, term);
+        } else {
+
+            // TODO clear functionality
+            loanDetails = new LoanDetails();
+        }
+        return "redirect:";
     }
 }

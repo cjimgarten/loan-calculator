@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
 
     <div th:replace="fragments :: h1"></div>
 
     <form method="post">
-        <label>Amount</label>
-        <input type="text" name="amount"/>
-
-        <label>Interest Rate</label>
-        <input type="text" name="interestRate"/>
-
-        <label>Term</label>
-        <input type="text" name="term"/>
-
-        <input type="submit" value="Calculate"/>
+        <div class="form-group">
+            <label>Amount</label>
+            <input class="form-control" type="text" placeholder="Enter loan amount" name="amount"/>
+        </div>
+        <div class="form-group">
+            <label>Interest Rate</label>
+            <input class="form-control" type="text" placeholder="Enter interest rate"
+                   name="interestRate"/>
+        </div>
+        <div class="form-group">
+            <label>Term</label>
+            <input class="form-control" type="text" placeholder="Enter loan term" name="term"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-default-outline" type="submit" name="button"
+                    value="calculate">Calculate</button>
+            <button class="btn btn-lg btn-default-outline" type="submit" name="button"
+                    value="clear">Clear</button>
+        </div>
     </form>
 
-    <label>Loan Amount:</label>
-    <p th:text="${amount}"></p>
-
-    <label>Monthly Payment:</label>
-    <p th:text="${monthlyPayment}"></p>
-
-    <label>Total Payment:</label>
-    <p th:text="${totalPayment}"></p>
-
-    <label>Total Interest:</label>
-    <p th:text="${totalInterest}"></p>
-
-    <label>Annual Payment:</label>
-    <p th:text="${annualPayment}"></p>
+    <table class="table">
+        <tr>
+            <td>Loan Amount</td>
+            <td>Interest Rate</td>
+            <td>Loan Term</td>
+            <td>Monthly Payment</td>
+            <td>Total Payment</td>
+            <td>Total Interest</td>
+            <td>Annual Payment</td>
+        </tr>
+        <tr>
+            <td th:text="${amount}"></td>
+            <td th:text="${interestRate}"></td>
+            <td th:text="${term}"></td>
+            <td th:text="${monthlyPayment}"></td>
+            <td th:text="${totalPayment}"></td>
+            <td th:text="${totalInterest}"></td>
+            <td th:text="${annualPayment}"></td>
+        </tr>
+    </table>
 
 </body>
 </html>
