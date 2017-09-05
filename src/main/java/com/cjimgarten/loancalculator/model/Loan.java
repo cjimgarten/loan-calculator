@@ -5,17 +5,17 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by chris on 7/30/17.
  */
-public class LoanDetails {
+public class Loan {
 
     @NotNull private String amount;
     @NotNull private String interestRate;
     @NotNull private String term;
 
-    public LoanDetails() {
+    public Loan() {
         this("0.0", "0.0", "0.0");
     }
 
-    public LoanDetails(String amount, String interestRate, String term) {
+    public Loan(String amount, String interestRate, String term) {
         this.amount = amount;
         this.interestRate = interestRate;
         this.term = term;

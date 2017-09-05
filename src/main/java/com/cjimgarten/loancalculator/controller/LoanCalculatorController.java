@@ -1,6 +1,6 @@
 package com.cjimgarten.loancalculator.controller;
 
-import com.cjimgarten.loancalculator.model.LoanDetails;
+import com.cjimgarten.loancalculator.model.Loan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 @RequestMapping(value = "")
 public class LoanCalculatorController {
 
-    private static LoanDetails loanDetails;
+    private static Loan loanDetails;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String indexGET(Model model) {
@@ -45,14 +45,14 @@ public class LoanCalculatorController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String indexPOST(@ModelAttribute @Valid LoanDetails ld,
+    public String indexPOST(@ModelAttribute @Valid Loan ld,
                             Errors errors) {
 
         // DEBUG
         System.out.println(ld);
 
         /**
-         * LoanDetails ld = new LoanDetails();
+         * Loan ld = new Loan();
          * ld.setAmount(request.getParameter("amount"));
          * ld.setInterestRate(request.getParameter("interestRate));
          * ld.setTerm(request.getParameter("term"));
