@@ -18,44 +18,44 @@ import java.text.DecimalFormat;
 @RequestMapping(value = "")
 public class LoanCalculatorController {
 
-    private static Loan loanDetails;
+    private static Loan loan;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String indexGET(Model model) {
         model.addAttribute("title", "Loan Calculator");
 
         DecimalFormat df = new DecimalFormat("#,###.00");
-        if (loanDetails != null) {
+        if (loan != null) {
             model.addAttribute("amount",
-                    "$" + df.format(Double.parseDouble(loanDetails.getAmount())));
+                    "$" + df.format(Double.parseDouble(loan.getAmount())));
             model.addAttribute("interestRate",
-                    loanDetails.getInterestRate() + "%");
+                    loan.getInterestRate() + "%");
             model.addAttribute("term",
-                    loanDetails.getTerm() + " years");
+                    loan.getTerm() + " years");
             model.addAttribute("monthlyPayment",
-                    "$" + df.format(loanDetails.calculateMonthlyPayment()));
+                    "$" + df.format(loan.calculateMonthlyPayment()));
             model.addAttribute("totalPayment",
-                    "$" + df.format(loanDetails.calculateTotalPayment()));
+                    "$" + df.format(loan.calculateTotalPayment()));
             model.addAttribute("totalInterest",
-                    "$" + df.format(loanDetails.calculateTotalInterest()));
+                    "$" + df.format(loan.calculateTotalInterest()));
             model.addAttribute("annualPayment",
-                    "$" + df.format(loanDetails.calculateAnnualPayment()));
+                    "$" + df.format(loan.calculateAnnualPayment()));
         }
         return "index";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String indexPOST(@ModelAttribute @Valid Loan ld,
+    public String indexPOST(@ModelAttribute @Valid Loan ln,
                             Errors errors) {
 
         // DEBUG
-        System.out.println(ld);
+        System.out.println(ln);
 
         /**
-         * Loan ld = new Loan();
-         * ld.setAmount(request.getParameter("amount"));
-         * ld.setInterestRate(request.getParameter("interestRate));
-         * ld.setTerm(request.getParameter("term"));
+         * Loan ln = new Loan();
+         * ln.setAmount(request.getParameter("amount"));
+         * ln.setInterestRate(request.getParameter("interestRate));
+         * ln.setTerm(request.getParameter("term"));
          */
 
         if (errors.hasErrors()) {
@@ -65,7 +65,7 @@ public class LoanCalculatorController {
             return "redirect:";
         }
 
-        loanDetails = ld;
+        loan = ln;
         return "redirect:";
     }
 }
