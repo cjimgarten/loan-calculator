@@ -33,13 +33,13 @@ public class LoanCalculatorController {
             model.addAttribute("term",
                     loanDetails.getTerm() + " years");
             model.addAttribute("monthlyPayment",
-                    "$" + df.format(loanDetails.getLoanCalculations().getMonthlyPayment()));
+                    "$" + df.format(loanDetails.calculateMonthlyPayment()));
             model.addAttribute("totalPayment",
-                    "$" + df.format(loanDetails.getLoanCalculations().getTotalPayment()));
+                    "$" + df.format(loanDetails.calculateTotalPayment()));
             model.addAttribute("totalInterest",
-                    "$" + df.format(loanDetails.getLoanCalculations().getTotalInterest()));
+                    "$" + df.format(loanDetails.calculateTotalInterest()));
             model.addAttribute("annualPayment",
-                    "$" + df.format(loanDetails.getLoanCalculations().getAnnualPayment()));
+                    "$" + df.format(loanDetails.calculateAnnualPayment()));
         }
         return "index";
     }
@@ -47,6 +47,10 @@ public class LoanCalculatorController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String indexPOST(@ModelAttribute @Valid LoanDetails ld,
                             Errors errors) {
+
+        // DEBUG
+        System.out.println(ld);
+
         /**
          * LoanDetails ld = new LoanDetails();
          * ld.setAmount(request.getParameter("amount"));
