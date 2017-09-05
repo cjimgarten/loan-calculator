@@ -5,7 +5,7 @@
 
     <div th:replace="fragments :: h1"></div>
 
-    <form method="post">
+    <form method="post" style="max-width:600px;">
         <div class="form-group">
             <label>Amount</label>
             <input class="form-control" type="text" placeholder="Enter loan amount" name="amount"/>
@@ -20,10 +20,7 @@
             <input class="form-control" type="text" placeholder="Enter loan term" name="term"/>
         </div>
         <div class="form-group">
-            <button class="btn btn-lg btn-default-outline" type="submit" name="button"
-                    value="calculate">Calculate</button>
-            <button class="btn btn-lg btn-default-outline" type="submit" name="button"
-                    value="clear">Clear</button>
+            <input class="btn btn-lg btn-default-outline" type="submit" value="Calculate"/>
         </div>
     </form>
 

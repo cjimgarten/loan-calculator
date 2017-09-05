@@ -3,10 +3,12 @@ package com.cjimgarten.loancalculator.controller;
 import com.cjimgarten.loancalculator.model.LoanDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.text.DecimalFormat;
 
 /**
@@ -25,35 +27,41 @@ public class LoanCalculatorController {
         DecimalFormat df = new DecimalFormat("#,###.00");
         if (loanDetails != null) {
             model.addAttribute("amount",
-                    "$" + df.format(loanDetails.getAmount()));
+                    "$" + df.format(Double.parseDouble(loanDetails.getAmount())));
             model.addAttribute("interestRate",
                     loanDetails.getInterestRate() + "%");
             model.addAttribute("term",
                     loanDetails.getTerm() + " years");
             model.addAttribute("monthlyPayment",
-                    "$" + df.format(loanDetails.getMonthlyPayment()));
+                    "$" + df.format(loanDetails.getLoanCalculations().getMonthlyPayment()));
             model.addAttribute("totalPayment",
-                    "$" + df.format(loanDetails.getTotalPayment()));
+                    "$" + df.format(loanDetails.getLoanCalculations().getTotalPayment()));
             model.addAttribute("totalInterest",
-                    "$" + df.format(loanDetails.getTotalInterest()));
+                    "$" + df.format(loanDetails.getLoanCalculations().getTotalInterest()));
             model.addAttribute("annualPayment",
-                    "$" + df.format(loanDetails.getAnnualPayment()));
+                    "$" + df.format(loanDetails.getLoanCalculations().getAnnualPayment()));
         }
         return "index";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String indexPOST(@RequestParam double amount,
-                            @RequestParam double interestRate,
-                            @RequestParam double term,
-                            @RequestParam String button) {
-        if (button.equals("calculate")) {
-            loanDetails = new LoanDetails(amount, interestRate, term);
-        } else {
+    public String indexPOST(@ModelAttribute @Valid LoanDetails ld,
+                            Errors errors) {
+        /**
+         * LoanDetails ld = new LoanDetails();
+         * ld.setAmount(request.getParameter("amount"));
+         * ld.setInterestRate(request.getParameter("interestRate));
+         * ld.setTerm(request.getParameter("term"));
+         */
 
-            // TODO clear functionality
-            loanDetails = new LoanDetails();
+        if (errors.hasErrors()) {
+
+            // LOG MESSAGE
+            System.out.println(errors.getFieldError());
+            return "redirect:";
         }
+
+        loanDetails = ld;
         return "redirect:";
     }
 }

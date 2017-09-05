@@ -1,104 +1,77 @@
 package com.cjimgarten.loancalculator.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by chris on 7/30/17.
  */
 public class LoanDetails {
 
-    private double amount;
-    private double interestRate;
-    private double term;
-    private double monthlyPayment;
-    private double totalPayment;
-    private double totalInterest;
-    private double annualPayment;
+    @NotNull private String amount;
+    @NotNull private String interestRate;
+    @NotNull private String term;
+    private LoanCalculations loanCalculations;
 
     public LoanDetails() {
-
+        this("0.0", "0.0", "0.0");
     }
 
-    public LoanDetails(double amount, double interestRate, double term) {
+    public LoanDetails(String amount, String interestRate, String term) {
         this.amount = amount;
         this.interestRate = interestRate;
         this.term = term;
-        refresh();
+        this.loanCalculations = new LoanCalculations(
+                Double.parseDouble(amount),
+                Double.parseDouble(interestRate),
+                Double.parseDouble(term));
     }
 
-    public double getAmount() {
-        return this.amount;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
-        refresh();
+        loanCalculations.calculate(
+                Double.parseDouble(this.amount),
+                Double.parseDouble(this.interestRate),
+                Double.parseDouble(this.term));
     }
 
-    public double getInterestRate() {
-        return this.interestRate;
+    public String getInterestRate() {
+        return interestRate;
     }
 
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(String interestRate) {
         this.interestRate = interestRate;
-        refresh();
+        loanCalculations.calculate(
+                Double.parseDouble(this.amount),
+                Double.parseDouble(this.interestRate),
+                Double.parseDouble(this.term));
     }
 
-    public double getTerm() {
-        return this.term;
+    public String getTerm() {
+        return term;
     }
 
-    public void setTerm(double term) {
+    public void setTerm(String term) {
         this.term = term;
-        refresh();
+        loanCalculations.calculate(
+                Double.parseDouble(this.amount),
+                Double.parseDouble(this.interestRate),
+                Double.parseDouble(this.term));
     }
 
-    public double getMonthlyPayment() {
-        return this.monthlyPayment;
+    public LoanCalculations getLoanCalculations() {
+        return loanCalculations;
     }
 
-    public double getTotalPayment() {
-        return this.totalPayment;
-    }
 
-    public double getTotalInterest() {
-        return this.totalInterest;
-    }
-
-    public double getAnnualPayment() {
-        return this.annualPayment;
-    }
-
-    public void refresh() {
-        calculateMonthlyPayment();
-        calculateTotalPayment();
-        calculateTotalInterest();
-        calculateAnnualPayment();
-    }
-
-    public void calculateMonthlyPayment() {
-
-        // variables needed to perform other calculations
-        double n = this.term * 12.0; // payments per year times number of years
-        double i = (this.interestRate * 0.01) / 12.0; // annual interest rate divided by number of payments per year
-
-        // calculate monthly loan payment
-        double dfPow = Math.pow((1+i), n); // part of the discount factor formula
-        double discountFactor = (dfPow - 1) / (i * dfPow); // not sure... just part of the formula
-        this.monthlyPayment = this.amount / discountFactor;
-    }
-
-    public void calculateTotalPayment() {
-        // TODO calculate the total payment
-        double n = this.term * 12.0; // payments per year times number of years
-        this.totalPayment = this.monthlyPayment * n;
-    }
-
-    public void calculateTotalInterest() {
-        // TODO calculate the total interest
-        this.totalInterest = this.totalPayment - this.amount;
-    }
-
-    public void calculateAnnualPayment() {
-        // TODO calculate the annual payment
-        this.annualPayment = this.monthlyPayment * 12;
+    @Override
+    public String toString() {
+        return "[amount: " + amount +
+                ", interestRate: " + interestRate +
+                ", term: " + term +
+                ", loanCalculations: " + loanCalculations + "]";
     }
 }
