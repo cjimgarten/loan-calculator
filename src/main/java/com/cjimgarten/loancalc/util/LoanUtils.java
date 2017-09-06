@@ -1,4 +1,4 @@
-package com.cjimgarten.loancalculator.util;
+package com.cjimgarten.loancalc.util;
 
 /**
  * Created by chris on 9/2/17.

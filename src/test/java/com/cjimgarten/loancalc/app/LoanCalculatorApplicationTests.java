@@ -1,4 +1,4 @@
-package com.cjimgarten.loancalculator.app;
+package com.cjimgarten.loancalc.app;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

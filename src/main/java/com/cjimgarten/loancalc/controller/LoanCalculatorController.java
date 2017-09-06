@@ -1,6 +1,6 @@
-package com.cjimgarten.loancalculator.controller;
+package com.cjimgarten.loancalc.controller;
 
-import com.cjimgarten.loancalculator.model.Loan;
+import com.cjimgarten.loancalc.model.Loan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
