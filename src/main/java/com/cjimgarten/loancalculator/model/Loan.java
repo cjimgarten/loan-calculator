@@ -1,15 +1,20 @@
 package com.cjimgarten.loancalculator.model;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by chris on 7/30/17.
  */
 public class Loan {
 
-    @NotNull private String amount;
-    @NotNull private String interestRate;
-    @NotNull private String term;
+    @Size(min = 1)
+    private String amount;
+
+    @Size(min = 1)
+    private String interestRate;
+
+    @Size(min = 1)
+    private String term;
 
     public Loan() {
         this("0.0", "0.0", "0.0");

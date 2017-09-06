@@ -46,25 +46,13 @@ public class LoanCalculatorController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String indexPOST(@ModelAttribute @Valid Loan ln,
-                            Errors errors) {
-
-        // DEBUG
-        System.out.println(ln);
-
-        /**
-         * Loan ln = new Loan();
-         * ln.setAmount(request.getParameter("amount"));
-         * ln.setInterestRate(request.getParameter("interestRate));
-         * ln.setTerm(request.getParameter("term"));
-         */
-
+                            Errors errors,
+                            Model model) {
         if (errors.hasErrors()) {
-
-            // LOG MESSAGE
-            System.out.println(errors.getFieldError());
-            return "redirect:";
+            model.addAttribute("title", "Loan Calculator");
+            model.addAttribute("invalidSearch", "Invalid search criteria");
+            return "index";
         }
-
         loan = ln;
         return "redirect:";
     }
