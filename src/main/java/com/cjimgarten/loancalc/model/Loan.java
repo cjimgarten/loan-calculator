@@ -70,27 +70,19 @@ public class Loan {
 
     // calculate the total payment
     public double calculateTotalPayment() {
-
         double term = Double.parseDouble(this.term);
-
-        // calculate and return the total payment
         double n = term * 12.0; // payments per year times number of years
         return calculateMonthlyPayment() * n;
     }
 
     // calculate the total interest
     public double calculateTotalInterest() {
-
         double amount = Double.parseDouble(this.amount);
-
-        // calculate and return the total interest
         return calculateTotalPayment() - amount;
     }
 
     // calculate the annual payment
     public double calculateAnnualPayment() {
-
-        // calculate and return the annual payment
         return calculateMonthlyPayment() * 12;
     }
 
