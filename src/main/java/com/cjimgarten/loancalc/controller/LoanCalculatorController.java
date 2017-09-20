@@ -48,7 +48,7 @@ public class LoanCalculatorController {
                     "$" + df.format(loan.calculateAnnualPayment()));
         }
 
-        LOG.debug("GET processed successfully");
+        LOG.debug("GET processed successfully... returning index");
         return "index";
     }
 
@@ -66,7 +66,8 @@ public class LoanCalculatorController {
             return "index";
         }
         loan = ln;
-        LOG.debug("POST processed successfully");
+
+        LOG.debug("POST processed successfully... redirecting to index");
         return "redirect:";
     }
 }
